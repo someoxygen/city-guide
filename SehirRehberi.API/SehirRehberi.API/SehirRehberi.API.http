@@ -1,0 +1,6 @@
+@SehirRehberi.API_HostAddress = http://localhost:5103
+
+GET {{SehirRehberi.API_HostAddress}}/api/values
+Accept: application/json
+
+###
