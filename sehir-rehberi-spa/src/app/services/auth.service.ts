@@ -59,14 +59,14 @@ export class AuthService {
   }
 
   get token(){
-    return localStorage.getItem(this.TOKEN_KEY);
+    return localStorage.getItem(this.TOKEN_KEY); 
   }
 
   // getCurrentUserId(){
   //   return this.helper.decodeToken(localStorage.getItem(this.TOKEN_KEY) || '{}').nameid;
   // }
+
   getCurrentUserId(){
     return this.decodedToken?.nameid;
   }
-
 }
