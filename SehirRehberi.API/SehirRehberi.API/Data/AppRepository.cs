@@ -32,6 +32,11 @@ namespace SehirRehberi.API.Data
             var city = _context.Cities.Include(c =>c.Photos).FirstOrDefault(c => c.Id == cityId);
             return city;
         }
+        public List<City> GetCitiesByUserId(int userId)
+        {
+            var city = _context.Cities.Include(c => c.Photos).Where(c => c.UserId == userId).ToList();
+            return city;
+        }
         public User GetUserById(int userId)
         {
             var user = _context.Users.FirstOrDefault(c => c.Id == userId);

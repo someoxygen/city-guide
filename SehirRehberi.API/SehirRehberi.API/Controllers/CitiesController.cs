@@ -25,8 +25,6 @@ namespace SehirRehberi.API.Controllers
         {
             var cities = _appRepository.GetCities();
             var citiesToReturn = _mapper.Map<List<CityForListDto>>(cities);
-
-            //.Select(c => new CityForListDto { Description = c.Description, Name = c.Name,Id = c.Id, PhotoUrl = c.Photos.FirstOrDefault(p => p.IsMain = true).Url}).ToList();
             return Ok(citiesToReturn);
         }
 
@@ -45,9 +43,21 @@ namespace SehirRehberi.API.Controllers
         {
             var city = _appRepository.GetCityById(id);        
             var cityToReturn = _mapper.Map<CityForDetailDto>(city);
-
-            //.Select(c => new CityForListDto { Description = c.Description, Name = c.Name,Id = c.Id, PhotoUrl = c.Photos.FirstOrDefault(p => p.IsMain = true).Url}).ToList();
             return Ok(cityToReturn);
+        }
+
+        [HttpGet]
+        [Route("getCitiesByUserId")]
+        public ActionResult GetCitiesByUserId(int userId)
+        {
+            var cityList = _appRepository.GetCitiesByUserId(userId);
+            List<CityForDetailDto> cityForDetailDtos = new List<CityForDetailDto>();
+            foreach (var city in cityList)
+            {
+                cityForDetailDtos.Add(_mapper.Map<CityForDetailDto>(city));
+            }
+            //var cityToReturn = _mapper.Map<CityForDetailDto>(cityList);
+            return Ok(cityForDetailDtos);
         }
 
         [HttpGet]
