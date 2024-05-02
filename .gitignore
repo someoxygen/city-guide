@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.vsidx
+*.vsidx
+/SehirRehberi.API/SehirRehberi.API/obj/Debug/net8.0/SehirRehberi.API.assets.cache
+/SehirRehberi.API/SehirRehberi.API/obj/Debug/net8.0/SehirRehberi.API.csproj.AssemblyReference.cache
