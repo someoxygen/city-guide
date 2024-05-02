@@ -30,7 +30,7 @@ export class AuthService {
         this.saveToken(data);
         this.userToken = data;
         this.decodedToken = this.helper.decodeToken(data);
-        this.alertifyService.success('Sisteme giris yapildi.');
+        this.alertifyService.success("Logged in successfully.");
         this.router.navigateByUrl('/city');
       });
   }
@@ -51,7 +51,7 @@ export class AuthService {
 
   logOut(){
     localStorage.removeItem(this.TOKEN_KEY);
-    this.alertifyService.error('Sistemden cikis yapildi.');
+    this.alertifyService.success("Logged out successfully.");
   }
 
   loggedIn(){
@@ -66,7 +66,7 @@ export class AuthService {
   //   return this.helper.decodeToken(localStorage.getItem(this.TOKEN_KEY) || '{}').nameid;
   // }
   getCurrentUserId(){
-    return this.decodedToken.nameid;
+    return this.decodedToken?.nameid;
   }
 
 }

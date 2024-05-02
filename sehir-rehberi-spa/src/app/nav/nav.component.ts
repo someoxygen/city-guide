@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService, private router : Router) { }
   
   loginUser : any = {};
   isAuthenticated = false;
@@ -24,5 +25,6 @@ export class NavComponent implements OnInit {
   logOut(){
     this.authService.logOut();
     this.isAuthenticated = false;
+    this.router.navigateByUrl('/register');
   }
 }

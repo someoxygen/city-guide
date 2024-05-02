@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { City } from '../models/city';
 import { CityService } from '../services/city.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-city',
@@ -9,11 +10,19 @@ import { CityService } from '../services/city.service';
   providers: [CityService],
 })
 export class CityComponent implements OnInit {
-  constructor(private cityService: CityService) {}
+  constructor(private cityService: CityService, private authService : AuthService) {}
   cities: City[] = [];
+  userId = 0;
   ngOnInit() {
-    this.cityService.getCities().subscribe((data) => {
-      this.cities = data;
-    });
+    this.userId = this.authService.getCurrentUserId();
+    console.log(this.userId);
+    if(this.userId != 0){
+      this.cityService.getCitiesByUserId(this.userId).subscribe((data) => {
+        this.cities = data;
+      });
+    }
+    // this.cityService.getCities().subscribe((data) => {
+    //   this.cities = data;
+    // });
   }
 }

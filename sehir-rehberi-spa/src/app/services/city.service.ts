@@ -22,12 +22,15 @@ export class CityService {
   getCityById(cityId : number): Observable<City>{
     return this.httpClient.get<City>(this.path + "cities/detail/?id=" + cityId);
   }
+  getCitiesByUserId(userId : number): Observable<City[]>{
+    return this.httpClient.get<City[]>(this.path + "cities/getCitiesByUserId/?userId=" + userId);
+  }
   getPhotosByCity(cityId : number) : Observable<Photo[]>{
     return this.httpClient.get<Photo[]>(this.path + "cities/photos/?cityId=" + cityId);
   }
   add(city : City){
     this.httpClient.post<City>(this.path + 'Cities/add', city).subscribe(data => {
-      this.alertifyService.success("Sehir basariyla eklendi.");
+      this.alertifyService.success("City successfully added.");
       this.router.navigateByUrl('/cityDetail/' + data["id"]);
     });
   }
