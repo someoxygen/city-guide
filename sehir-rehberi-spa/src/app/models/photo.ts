@@ -5,4 +5,5 @@ export class Photo {
     description:string;
     isMain:boolean;
     url:string;
+    publicId:string;
 }

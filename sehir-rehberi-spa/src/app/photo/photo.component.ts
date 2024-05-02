@@ -56,24 +56,29 @@ export class PhotoComponent implements OnInit {
 
     this.uploader = new FileUploader({
       url : this.baseUrl + 'cities/' + this.currentCity + '/photos',
-      authToken : 'Bearer ' + localStorage.getItem('token'),
+      authToken : 'Bearer ' + this.authService.token,
+      //authToken : 'Bearer ' + this.authService.getDecodedToken(),
+      //authToken : 'Bearer ' + localStorage.getItem('token'),
       //isHTML5 : true,
       allowedFileType : ['image'],
       autoUpload : false,
       removeAfterUpload : true,
       maxFileSize : 10 * 1024 * 1024
     });
-
+    console.error(this.uploader);
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if(response){
-        const res : Photo = JSON.parse(response);
+        console.error(response);
+        let res : Photo = JSON.parse(response);
+        console.error(res);
         const photo = {
           id : res.id,
           url : res.url,
           dateAdded : res.dateAdded,
           description : res.description,
           isMain : res.isMain,
-          cityId : res.cityId
+          cityId : res.cityId,
+          publicId : res.publicId,
         }
         this.photos.push(photo);
       }

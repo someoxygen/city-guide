@@ -20,7 +20,7 @@ import { PhotoComponent } from './photo/photo.component';
 
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
     ValueComponent,
     NavComponent,
