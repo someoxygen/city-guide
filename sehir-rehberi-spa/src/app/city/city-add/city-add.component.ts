@@ -37,13 +37,10 @@ export class CityAddComponent implements OnInit {
   add(){
     if(this.cityAddForm.valid){
       this.city = Object.assign({},this.cityAddForm.value);
-      console.error(this.city);
       this.city.userId = this.authService.getCurrentUserId();
-      
       this.userService.getUserById(this.city.userId).subscribe(result => {
         this.city.User = result;
       });
-      console.error(this.city);
       this.cityService.add(this.city);
     }
   }

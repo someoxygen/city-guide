@@ -26,8 +26,6 @@ namespace SehirRehberi.API.Controllers
         {
             var user = _appRepository.GetUserById(id);
             var userToReturn = _mapper.Map<UserForReturnDto>(user);
-
-            //.Select(c => new CityForListDto { Description = c.Description, Name = c.Name,Id = c.Id, PhotoUrl = c.Photos.FirstOrDefault(p => p.IsMain = true).Url}).ToList();
             return Ok(userToReturn);
         }
     }
