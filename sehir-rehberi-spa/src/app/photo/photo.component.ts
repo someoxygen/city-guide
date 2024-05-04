@@ -52,7 +52,6 @@ export class PhotoComponent implements OnInit {
     // this.hasAnotherDropZoneOver = false;
     // this.response = '';
     // this.uploader.response.subscribe( res => this.response = res );
-    // console.error(this.uploader);
 
     this.uploader = new FileUploader({
       url : this.baseUrl + 'cities/' + this.currentCity + '/photos',
@@ -65,20 +64,17 @@ export class PhotoComponent implements OnInit {
       removeAfterUpload : true,
       maxFileSize : 10 * 1024 * 1024
     });
-    console.error(this.uploader);
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if(response){
-        console.error(response);
         let res : Photo = JSON.parse(response);
-        console.error(res);
         const photo = {
           id : res.id,
           url : res.url,
           dateAdded : res.dateAdded,
-          description : res.description,
+          Description : res.Description,
           isMain : res.isMain,
           cityId : res.cityId,
-          publicId : res.publicId,
+          PublicId : res.PublicId,
         }
         this.photos.push(photo);
       }

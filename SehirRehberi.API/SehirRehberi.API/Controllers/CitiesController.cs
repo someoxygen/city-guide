@@ -51,13 +51,13 @@ namespace SehirRehberi.API.Controllers
         public ActionResult GetCitiesByUserId(int userId)
         {
             var cityList = _appRepository.GetCitiesByUserId(userId);
-            List<CityForDetailDto> cityForDetailDtos = new List<CityForDetailDto>();
+            List<CityForListDto> cityForListDtos = new List<CityForListDto>();
             foreach (var city in cityList)
             {
-                cityForDetailDtos.Add(_mapper.Map<CityForDetailDto>(city));
+                cityForListDtos.Add(_mapper.Map<CityForListDto>(city));
             }
             //var cityToReturn = _mapper.Map<CityForDetailDto>(cityList);
-            return Ok(cityForDetailDtos);
+            return Ok(cityForListDtos);
         }
 
         [HttpGet]
