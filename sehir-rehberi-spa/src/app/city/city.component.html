@@ -11,8 +11,11 @@
               <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/cityDetail/{{city.id}}">
                 View
               </button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">
+              <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/cityedit/{{operationName}}">
                 Edit
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteCity(city.id)">
+                Delete
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="/addphoto/{{city.id}}">
                 Add Photo

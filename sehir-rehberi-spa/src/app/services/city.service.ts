@@ -22,6 +22,9 @@ export class CityService {
   getCityById(cityId : number): Observable<City>{
     return this.httpClient.get<City>(this.path + "cities/detail/?id=" + cityId);
   }
+  deleteCityById(cityId : number): Observable<City>{
+    return this.httpClient.get<City>(this.path + "cities/deleteCityById/?cityId=" + cityId);
+  }
   getCitiesByUserId(userId : number): Observable<City[]>{
     return this.httpClient.get<City[]>(this.path + "cities/getCitiesByUserId/?userId=" + userId);
   }
@@ -31,6 +34,12 @@ export class CityService {
   add(city : City){
     this.httpClient.post<City>(this.path + 'Cities/add', city).subscribe(data => {
       this.alertifyService.success("City successfully added.");
+      this.router.navigateByUrl('/cityDetail/' + data["id"]);
+    });
+  }
+  edit(city : City){
+    this.httpClient.post<City>(this.path + 'Cities/edit', city).subscribe(data => {
+      this.alertifyService.success("City successfully updated.");
       this.router.navigateByUrl('/cityDetail/' + data["id"]);
     });
   }

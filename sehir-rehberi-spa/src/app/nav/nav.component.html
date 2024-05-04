@@ -15,7 +15,7 @@
           <a class="nav-link"  routerLink="value" routerLinkActive="active">Values</a>
         </li> -->
         <li class="nav-item" *ngIf="isAuthenticated">
-          <a class="nav-link"  routerLink="cityadd" routerLinkActive="active">Add City</a>
+          <a class="nav-link" routerLink="cityadd/{{operationName}}" routerLinkActive="active">Add City</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="register" routerLinkActive="active">Register</a>
