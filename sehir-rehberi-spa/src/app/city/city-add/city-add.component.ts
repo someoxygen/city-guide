@@ -3,7 +3,7 @@ import { CityService } from '../../services/city.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { City } from '../../models/city';
 import { AlertifyService } from '../../services/alertify.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 
@@ -14,34 +14,49 @@ import { UserService } from '../../services/user.service';
   providers:[CityService]
 })
 export class CityAddComponent implements OnInit {
-
+  operationName = '';
   constructor(
     private cityService : CityService,
     private formBuilder : FormBuilder,
     private authService : AuthService,
-    private userService : UserService
+    private userService : UserService,
+    private activatedRoute : ActivatedRoute
   ) { }
   city : City = new City;
-  cityAddForm : FormGroup;
+  cityForm : FormGroup;
 
   createCityForm(){
-    this.cityAddForm = this.formBuilder.group(
+    this.cityForm = this.formBuilder.group(
       {name : ["", Validators.required],
       description : ["", Validators.required]});
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.operationName = params['operationName'];
+    });
     this.createCityForm();
   }
 
   add(){
-    if(this.cityAddForm.valid){
-      this.city = Object.assign({},this.cityAddForm.value);
+    if(this.cityForm.valid){
+      this.city = Object.assign({},this.cityForm.value);
       this.city.userId = this.authService.getCurrentUserId();
       this.userService.getUserById(this.city.userId).subscribe(result => {
         this.city.User = result;
       });
       this.cityService.add(this.city);
+    }
+  }
+
+  edit(){
+    if(this.cityForm.valid){
+      this.city = Object.assign({},this.cityForm.value);
+      this.city.userId = this.authService.getCurrentUserId();
+      this.userService.getUserById(this.city.userId).subscribe(result => {
+        this.city.User = result;
+      });
+      this.cityService.edit(this.city);
     }
   }
 

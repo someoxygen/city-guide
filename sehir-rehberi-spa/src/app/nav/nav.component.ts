@@ -13,7 +13,7 @@ export class NavComponent implements OnInit {
   
   loginUser : any = {};
   isAuthenticated = false;
-
+  operationName = 'add';
   ngOnInit() {
   }
 

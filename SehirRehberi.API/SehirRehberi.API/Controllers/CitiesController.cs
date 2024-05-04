@@ -37,6 +37,22 @@ namespace SehirRehberi.API.Controllers
             return Ok(city);
         }
 
+        [HttpPost]
+        [Route("edit")]
+        public ActionResult Edit([FromBody] City city)
+        {
+            var unmodifiedCity = _appRepository.GetCityById(city.Id);
+            if (unmodifiedCity != null)
+            {
+                unmodifiedCity.Name = city.Name;
+                unmodifiedCity.Description = city.Description;
+                _appRepository.Update(unmodifiedCity);
+                _appRepository.SaveAll();
+                return Ok(city);
+            }
+            return NotFound(city);
+        }
+
         [HttpGet]
         [Route("detail")]
         public ActionResult GetCitiesById(int id)
@@ -44,6 +60,21 @@ namespace SehirRehberi.API.Controllers
             var city = _appRepository.GetCityById(id);        
             var cityToReturn = _mapper.Map<CityForDetailDto>(city);
             return Ok(cityToReturn);
+        }
+
+
+        [HttpGet]
+        [Route("deleteCityById")]
+        public ActionResult DeleteCityById(int cityId)
+        {
+            var city = _appRepository.GetCityById(cityId);
+            foreach (var photo in city.Photos)
+            {
+                _appRepository.Delete(photo);
+            }
+            _appRepository.Delete(city);
+            _appRepository.SaveAll();
+            return Ok(cityId);
         }
 
         [HttpGet]
