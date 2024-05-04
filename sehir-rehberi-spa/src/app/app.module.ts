@@ -17,7 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { FileUploadModule } from 'ng2-file-upload';
 import { PhotoComponent } from './photo/photo.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [					
@@ -39,6 +39,7 @@ import { PhotoComponent } from './photo/photo.component';
     FormsModule,
     ReactiveFormsModule,
     FileUploadModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [

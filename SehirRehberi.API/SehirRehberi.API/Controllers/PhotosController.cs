@@ -69,16 +69,24 @@ namespace SehirRehberi.API.Controllers
             var photo = _mapper.Map<Photo>(photoForCreationDto);
             photo.City = city;
 
-            if(city.Photos.Any(p => p.IsMain))
+            if(!city.Photos.Any(p => p.IsMain))
             {
                 photo.IsMain = true;
             }
 
+            if(photo.Description == null)
+            {
+                photo.Description = "";
+            }
+            
             city.Photos.Add(photo);
             if (_appRepository.SaveAll())
             {
                 var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto",new {id = photo.Id}, photoToReturn);
+                var result = GetPhoto(photo.Id);
+                return result;
+                //return CreatedAtRoute("GetPhoto", new { id = photo.Id }, photoToReturn);
+
             }
             return BadRequest("Could not add the photo");
         }

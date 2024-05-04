@@ -15,7 +15,6 @@ export class CityComponent implements OnInit {
   userId = 0;
   ngOnInit() {
     this.userId = this.authService.getCurrentUserId();
-    console.log(this.userId);
     if(this.userId != 0){
       this.cityService.getCitiesByUserId(this.userId).subscribe((data) => {
         this.cities = data;

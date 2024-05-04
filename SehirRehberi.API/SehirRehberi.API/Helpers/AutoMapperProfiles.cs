@@ -16,7 +16,7 @@ namespace SehirRehberi.API.Helpers
             CreateMap<City, CityForDetailDto>();
             CreateMap<User, UserForReturnDto>();
             CreateMap<PhotoForCreationDto, Photo>();
-            CreateMap<PhotoForReturnDto, Photo>();
+            CreateMap<Photo,PhotoForReturnDto>();
         }
     }
 }

@@ -62,11 +62,11 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY); 
   }
 
-  // getCurrentUserId(){
-  //   return this.helper.decodeToken(localStorage.getItem(this.TOKEN_KEY) || '{}').nameid;
-  // }
-
   getCurrentUserId(){
-    return this.decodedToken?.nameid;
+    return this.helper.decodeToken(localStorage.getItem(this.TOKEN_KEY) || '{}').nameid;
   }
+
+  // getCurrentUserId(){
+  //   return this.decodedToken?.nameid;
+  // }
 }
