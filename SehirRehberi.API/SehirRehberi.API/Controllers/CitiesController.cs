@@ -44,6 +44,7 @@ namespace SehirRehberi.API.Controllers
             var unmodifiedCity = _appRepository.GetCityById(city.Id);
             if (unmodifiedCity != null)
             {
+
                 unmodifiedCity.Name = city.Name;
                 unmodifiedCity.Description = city.Description;
                 _appRepository.Update(unmodifiedCity);
