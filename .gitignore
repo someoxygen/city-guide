@@ -252,3 +252,6 @@ paket-files/
 /SehirRehberi.API/.vs/SehirRehberi.API/FileContentIndex/7711b29a-5861-412d-b952-905ed9aab4e4.vsidx
 /SehirRehberi.API/.vs/SehirRehberi.API/FileContentIndex/9a9d6968-9d16-403b-beeb-dd442baca56c.vsidx
 /SehirRehberi.API/.vs/SehirRehberi.API/DesignTimeBuild/.dtbcache.v2
+/SehirRehberi.API/SehirRehberi.API/obj/Debug/net8.0/staticwebassets.build.json
+/SehirRehberi.API/SehirRehberi.API/obj/Debug/net8.0/SehirRehberi.API.GeneratedMSBuildEditorConfig.editorconfig
+/SehirRehberi.API/SehirRehberi.API/obj/Debug/net8.0/staticwebassets/msbuild.build.SehirRehberi.API.props
