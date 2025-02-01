@@ -20,7 +20,8 @@ var configuration = new ConfigurationBuilder()
     .Build();
 var key = Encoding.ASCII.GetBytes(configuration.GetSection("Appsettings:Token").Value);
 builder.Services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConnectionString")));
+//builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly(), typeof(Profile).Assembly);
 builder.Services.AddMvc(options =>
 {

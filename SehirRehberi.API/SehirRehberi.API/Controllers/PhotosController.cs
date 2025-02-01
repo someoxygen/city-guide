@@ -78,7 +78,7 @@ namespace SehirRehberi.API.Controllers
             {
                 photo.Description = "";
             }
-            
+            photo.DateAdded = photo.DateAdded.ToUniversalTime();
             city.Photos.Add(photo);
             if (_appRepository.SaveAll())
             {
